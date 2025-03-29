@@ -87,13 +87,10 @@ class UnifiAccessDoor:
 
     def unlock(self) -> None:
         """Unlock door."""
-        if self.is_locked:
-            self._is_unlocking = True
-            self._hub.unlock_door(self._id)
-            self._is_unlocking = False
-            _LOGGER.info("Door with door ID %s is unlocked", self.id)
-        else:
-            _LOGGER.error("Door with door ID %s is already unlocked", self.id)
+        self._is_unlocking = True
+        self._hub.unlock_door(self._id)
+        self._is_unlocking = False
+        _LOGGER.info("Door with door ID %s is unlocked", self.id)
 
     def set_lock_rule(self, lock_rule_type) -> None:
         """Set lock rule."""
